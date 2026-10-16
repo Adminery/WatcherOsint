@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WatcherOsint — Username</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&family=Vazirmatn:wght@400;600;800&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#e3e7ee;--sd:#a9b2c4;--sl:#fff;--g1:#eaeef5;--g2:#dce1ea;--tx:#232b3d;--mu:#586279;--bd:rgba(255,255,255,.55);--hi:.55;--ac:#b88429;--onac:#15110a;--ok:#17744d;--wn:#94560c;--er:#b8403c;--ln:rgba(120,132,160,.28);--fh:Sora,Vazirmatn,sans-serif;--fb:Manrope,Vazirmatn,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--wn:#e0a24a;--er:#e2645f;--ln:rgba(160,172,200,.16)}}
+:root[data-theme="dark"]{--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--wn:#e0a24a;--er:#e2645f;--ln:rgba(160,172,200,.16)}
+:root[lang=fa]{--fh:Vazirmatn,Sora,sans-serif;--fb:Vazirmatn,Manrope,sans-serif}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:radial-gradient(800px 420px at 92% -8%,color-mix(in srgb,var(--ac) 15%,transparent),transparent),radial-gradient(700px 420px at -6% 62%,color-mix(in srgb,var(--ac) 9%,transparent),transparent),var(--bg);background-attachment:fixed}
+body{margin:0;color:var(--tx);font:500 14px/1.55 var(--fb);min-height:100vh}
+h1,h2,h3{font-family:var(--fh);margin:0}h3{font-size:16px}
+button,input{font:inherit;color:inherit}button{border:0;background:none;cursor:pointer}
+a{text-decoration:none;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.up{--d:8px;background:linear-gradient(145deg,var(--g1),var(--g2));border:1px solid var(--bd);box-shadow:var(--d) var(--d) calc(var(--d)*2.2) var(--sd),calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl)}
+.in{--d:10px;background:var(--bg);box-shadow:inset var(--d) var(--d) calc(var(--d)*2.2) var(--sd),inset calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl),inset 2px 3px 4px color-mix(in srgb,var(--sd) 70%,#000)}
+.sm{--d:5px}.deep{--d:14px}
+button.up,a.up{transition:.15s}button.up:active,a.up:active{background:var(--bg);box-shadow:inset 6px 6px 12px var(--sd),inset -6px -6px 12px var(--sl);transform:scale(.97)}
+.clay,.btn{--cc:var(--ac);color:var(--onac);border:0;background:linear-gradient(150deg,color-mix(in srgb,var(--cc) 70%,#fff),var(--cc) 58%,color-mix(in srgb,var(--cc) 80%,#000));box-shadow:inset 4px 5px 9px rgba(255,255,255,calc(var(--hi) + .1)),inset -5px -7px 12px rgba(0,0,0,.2),8px 12px 24px color-mix(in srgb,var(--cc) 38%,transparent)}
+.btn{height:50px;padding:0 28px;border-radius:20px;font-weight:800;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.15s}
+.btn:active{transform:translateY(2px) scale(.98)}
+.gh{height:46px;padding:0 20px;border-radius:16px;font-weight:700;color:var(--tx);display:inline-flex;align-items:center;justify-content:center;gap:8px}.dng{color:var(--wn)}
+.card{border-radius:28px;padding:22px 26px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:12px;font:700 12px var(--fb);color:var(--ok);white-space:nowrap}.tag.m{color:var(--mu)}.tag.w{color:var(--wn)}
+#top{position:sticky;top:12px;z-index:60;margin:12px 14px 0;border-radius:28px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.sp{flex:1}.brand{display:flex;align-items:center;gap:13px;text-align:start}
+.bl{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;flex:none}
+.bn{font:800 17px/1.1 var(--fh)}.bn b{color:var(--ac)}.bn small{display:block;font:600 12px var(--fb);color:var(--mu);margin-top:3px}
+.pill{display:flex;align-items:center;gap:9px;padding:9px 16px;border-radius:16px;font-weight:700;font-size:13px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#2fae7a;box-shadow:0 0 0 4px rgba(47,174,122,.2);animation:pl 2s ease-in-out infinite}
+.dot.off{background:var(--er);box-shadow:0 0 0 4px rgba(184,64,60,.2);animation:none}
+.ib{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;font:800 14px var(--fh)}
+.lang{position:relative;display:flex;width:94px;height:46px;border-radius:23px;padding:4px;direction:ltr;flex:none}
+.lang span{flex:1;display:grid;place-items:center;font:800 13px Manrope,Vazirmatn,sans-serif;z-index:1;color:var(--mu);transition:color .3s}
+.lang:before{content:"";position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:19px;transition:transform .4s cubic-bezier(.3,1.5,.5,1);background:linear-gradient(150deg,color-mix(in srgb,var(--ac) 70%,#fff),var(--ac) 58%,color-mix(in srgb,var(--ac) 80%,#000));box-shadow:inset 3px 4px 7px rgba(255,255,255,.5),inset -3px -5px 8px rgba(0,0,0,.2),4px 6px 12px color-mix(in srgb,var(--ac) 40%,transparent)}
+.lang[data-l=fa]:before{transform:translateX(100%)}.lang[data-l=en] span:first-child,.lang[data-l=fa] span:last-child{color:var(--onac)}
+.sunI{display:none}html[data-eff=dark] .sunI{display:block}html[data-eff=dark] .moonI{display:none}
+.acct{position:relative}.pop{position:absolute;top:calc(100% + 16px);inset-inline-end:0;width:min(300px,86vw);border-radius:28px;padding:20px;display:flex;flex-direction:column;gap:12px;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transform-origin:top right;transition:.28s cubic-bezier(.3,1.3,.5,1);z-index:61}
+html[dir=rtl] .pop{transform-origin:top left}
+.acct.open .pop{opacity:1;visibility:visible;transform:none}
+.pl{display:flex;gap:13px;align-items:center}.pl small{display:block;color:var(--mu);font-size:12px}.pl b{display:block}
+#splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:opacity .5s,visibility .5s}#splash.off{opacity:0;visibility:hidden;pointer-events:none}
+.si{display:flex;flex-direction:column;align-items:center;gap:22px;padding:20px;text-align:center}
+.sl{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;position:relative}
+.sl:before{content:"";position:absolute;inset:-12px;border-radius:50%;border:3px solid transparent;border-top-color:var(--ac);border-right-color:color-mix(in srgb,var(--ac) 35%,transparent);animation:spin 1.1s linear infinite}
+.sl svg{width:64px;height:64px;color:var(--ac)}
+.pb{width:min(220px,70vw);height:12px;border-radius:9px;overflow:hidden}.pb i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(150deg,color-mix(in srgb,var(--ac) 70%,#fff),var(--ac));transition:width .15s}
+@keyframes pl{50%{opacity:.3;transform:scale(1.6)}}@keyframes sh{to{background-position:-300% 0}}@keyframes rise{from{opacity:0;transform:translateY(14px)}}@keyframes bm{from{transform:translateX(0)}to{transform:translateX(160%)}}@keyframes spin{to{transform:rotate(360deg)}}
+#shell{display:flex;gap:26px;padding:26px 14px;align-items:flex-start}
+#side{width:200px;position:sticky;top:96px;border-radius:28px;padding:14px;display:flex;flex-direction:column;gap:10px;flex:none}
+.nav{display:flex;align-items:center;gap:13px;height:52px;padding:0 16px;border-radius:17px;font-weight:700;color:var(--mu);text-align:start;width:100%}
+.nav.on{color:var(--tx)}.nav.on svg{color:var(--ac)}.nav:hover .gear,.nav.on .gear{animation:spin 4s linear infinite}
+main{flex:1;min-width:0;max-width:900px}
+.hd{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}.hd h1{font-size:26px;letter-spacing:-.3px}.hd p{margin:4px 0 0;color:var(--mu)}
+.bar{display:flex;align-items:center;gap:12px;padding:10px 10px 10px 22px;border-radius:24px;position:relative;overflow:hidden}html[dir=rtl] .bar{padding:10px 22px 10px 10px}
+.bar input{flex:1;min-width:0;height:48px;border:0;outline:0;background:none;font:600 16px 'JetBrains Mono',monospace;direction:ltr;text-align:start}
+.bar.run:after{content:"";position:absolute;left:0;bottom:0;height:4px;width:38%;border-radius:4px;background:var(--ac);animation:bm .9s ease-in-out infinite alternate}
+.seg{display:flex;padding:5px;gap:4px;border-radius:17px;margin-top:16px;width:fit-content}
+.seg button{padding:9px 16px;border-radius:13px;font-weight:700;color:var(--mu);font-size:13px;white-space:nowrap}
+.seg button.on{background:linear-gradient(145deg,var(--g1),var(--g2));box-shadow:3px 3px 8px var(--sd),-3px -3px 8px var(--sl);color:var(--tx)}
+.vpnote{display:flex;gap:10px;align-items:flex-start;padding:12px 18px;border-radius:18px;margin-top:14px;font-size:12.5px;color:var(--wn)}
+.rh{display:flex;justify-content:space-between;align-items:center;margin:28px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}.cards>article{animation:rise .5s both;animation-delay:calc(var(--i)*55ms)}
+.res{padding:16px 18px;border-radius:22px;display:flex;flex-direction:column;gap:10px}.l1{display:flex;align-items:center;gap:12px}.l1>b{flex:1;min-width:0;font-size:13.5px}
+.lg{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font:800 12px var(--fh);color:#fff;flex:none}
+.bio{font-size:12px;color:var(--mu);line-height:1.7;border-top:1px dashed var(--ln);padding-top:9px}.bio b{color:var(--tx);font-weight:700}
+a.lk{color:var(--ac);font-weight:700;text-decoration:underline;text-decoration-color:var(--ac);text-underline-offset:3px;display:inline-flex;gap:4px;align-items:center;align-self:flex-start}
+.skl{display:none;gap:20px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}.ld>.skl{display:grid}.ld>:not(.skl){display:none}
+.skl i:first-child{grid-column:1/-1;height:120px}
+.skl i{display:block;height:150px;border-radius:26px;background:linear-gradient(100deg,var(--g2) 30%,var(--g1) 50%,var(--g2) 70%);background-size:300% 100%;animation:sh 1.2s linear infinite;box-shadow:inset 4px 4px 9px var(--sd),inset -4px -4px 9px var(--sl)}
+.err{padding:16px 20px;border-radius:22px;color:var(--er);font-weight:700;font-size:13px;display:flex;gap:10px;align-items:flex-start;margin-top:10px}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;pointer-events:none;padding:12px 22px;border-radius:18px;font-weight:700;z-index:90;transition:.3s;max-width:90vw;text-align:center}#toast.s{opacity:1;transform:translate(-50%,0)}
+.foot{text-align:center;color:var(--mu);font-size:11px;margin:30px 0 10px;opacity:.6}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:901px){#toast{bottom:28px}}
+@media (max-width:900px){#shell{display:block;padding:14px 12px 108px}
+#side{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));top:auto;width:auto;flex-direction:row;padding:8px;border-radius:26px;z-index:50;gap:4px}
+.nav{flex-direction:column;height:60px;gap:3px;padding:0;justify-content:center;font-size:11px;flex:1}
+.bar{padding-left:16px}.bar input{font-size:14px}.pill{display:none}}
+@media (max-width:560px){.bn{display:none}.lang{width:86px}#top{padding:8px 10px;gap:8px}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="si"><div class="sl in"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M16 2l12 7v14l-12 7L4 23V9z"/><path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></svg></div>
+<div style="font:800 22px var(--fh)">Watcher<span style="color:var(--ac)">Osint</span></div>
+<div class="pb in sm"><i id="sp-b"></i></div>
+<div style="color:var(--mu);font-weight:700" id="sp-t"></div></div></div>
+
+<header id="top" class="up"></header>
+<div id="shell">
+  <aside id="side" class="up"></aside>
+  <main>
+    <div class="hd"><div><h1 id="t-h1"></h1><p id="t-p"></p></div></div>
+    <div class="bar in deep"><input id="unin" dir="ltr" placeholder="username"><button class="btn clay" id="run">…</button></div>
+    <div class="seg in sm" id="regionseg"></div>
+    <div class="vpnote up sm" id="vpnote" hidden></div>
+    <div id="out" class="ld"><div class="skl"><i></i><i></i><i></i></div></div>
+    <div class="foot">WatcherOsint v1.0</div>
+  </main>
+</div>
+<div id="toast" class="up" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},d:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const H=document.documentElement;
+let lang=ls.g('lang')||(/^fa/.test(navigator.language)?'fa':'en'), th=ls.g('th')||'auto', acI=+ls.g('ac')||0;
+const L=(e,f)=>lang=='fa'?f:e;
+H.lang=lang;H.dir=lang=='fa'?'rtl':'ltr';
+function esc(s){return String(s??'').replace(/[&<>"'`=\/]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;','=':'&#61;','/':'&#47;'}[c]))}
+const SW=[['#b88429','#15110a'],['#1f9d8e','#04211d'],['#6a52c8','#ffffff'],['#c8405f','#ffffff']];
+function setTheme(v){th=v;ls.s('th',v);v=='auto'?H.removeAttribute('data-theme'):H.setAttribute('data-theme',v);H.dataset.eff=v=='auto'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):v}
+function setAc(i){acI=i;ls.s('ac',i);H.style.setProperty('--ac',SW[i][0]);H.style.setProperty('--onac',SW[i][1])}
+setTheme(th);setAc(acI);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('s');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('s'),2400)}
+function apiBase(){return ls.g('wo_api_base')||'http://127.0.0.1:5000'}
+function pushHistory(type,q,summary){let h=[];try{h=JSON.parse(ls.g('wo_history'))||[]}catch(e){}h.unshift({type,q,summary,ts:Date.now()});ls.s('wo_history',JSON.stringify(h.slice(0,100)))}
+async function fetchSession(){
+  try{
+    const r = await fetch(`${apiBase()}/api/auth/me`, {credentials:'include'});
+    const d = await r.json();
+    return d.authenticated ? d.user : null;
+  }catch(e){ return null; }
+}
+
+const ic={phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>',email:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/>',gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',moon:'<path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/>',out:'<path d="M9 4H5a2 2 0 00-2 2v12a2 2 0 002 2h4M16 8l4 4-4 4M20 12H9"/>',key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>'};
+const ico=(n,s=20,c='')=>`<svg class="${c}" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[n]}</svg>`;
+const LOGO='<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M16 2l12 7v14l-12 7L4 23V9z"/><path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></svg>';
+const ini=n=>(String(n).match(/[A-Za-z\u0600-\u06FF0-9]/g)||['W']).slice(0,2).join('').toUpperCase();
+
+function profPop(s){
+  if(s) return `<div class="pl"><span class="av clay" style="width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font:800 13px var(--fh)">${ini(s.username)}</span><div><b>${esc(s.username)}</b><small dir="ltr">${esc(s.email)}</small></div></div>
+    <a class="up gh" href="settings.html">${ico('gear',18)} ${L('Settings','تنظیمات')}</a>
+    <button class="up gh dng" id="pop-logout">${ico('out',18)} ${L('Log out','خروج')}</button>`;
+  return `<div class="pl"><span class="bl clay">${LOGO}</span><div><b>${L('Welcome to WatcherOsint','به WatcherOsint خوش آمدید')}</b><small>${L('Log in to save history and sync settings.','برای ذخیره تاریخچه و همگام‌سازی تنظیمات وارد شوید.')}</small></div></div>
+    <a class="btn" href="login.html">${ico('key',18)} ${L('Log in','ورود')}</a>
+    <a class="up gh" href="login.html#signup">${L('Create account','ساخت حساب')}</a>`;
+}
+async function header(){
+  const s=await fetchSession();
+  $('#top').innerHTML=`<a class="brand" href="phone.html" aria-label="WatcherOsint"><span class="bl clay">${LOGO}</span><span class="bn">Watcher<b>Osint</b><small>${L('Intelligence suite','مجموعه اطلاعاتی')}</small></span></a>
+    <span class="pill in sm" id="health-pill"><i class="dot" id="health-dot"></i><span id="health-txt">${L('Checking backend…','بررسی بک‌اند…')}</span></span>
+    <span class="sp"></span>
+    <button class="lang in sm" id="btn-lang" data-l="${lang}" aria-label="${L('Switch language','تغییر زبان')}"><span>EN</span><span>فا</span></button>
+    <button class="ib up" id="btn-theme" aria-label="${L('Switch theme','تغییر پوسته')}"><span class="moonI">${ico('moon',22)}</span><span class="sunI">${ico('sun',22)}</span></button>
+    <div class="acct" id="acct"><button class="ib clay" id="btn-acct" aria-haspopup="true" aria-label="${L('Account','حساب کاربری')}">${s?ini(s.username):ico('key',20)}</button><div class="pop up">${profPop()}</div></div>`;
+  $('#btn-lang').onclick=()=>{ls.s('lang',lang=='fa'?'en':'fa');location.reload()};
+  $('#btn-theme').onclick=()=>setTheme(H.dataset.eff=='dark'?'light':'dark');
+  $('#btn-acct').onclick=()=>$('#acct').classList.toggle('open');
+  document.addEventListener('click',e=>{if(!e.target.closest('#acct'))$('#acct').classList.remove('open')});
+  if($('#pop-logout')) $('#pop-logout').onclick=async ()=>{
+    try{ await fetch(`${apiBase()}/api/auth/logout`, {method:'POST', credentials:'include'}); }catch(e){}
+    location.reload();
+  };
+  checkHealth();
+}
+async function checkHealth(){
+  try{
+    const r=await fetch(`${apiBase()}/api/health`,{signal:AbortSignal.timeout(4000)});
+    const d=await r.json();
+    $('#health-dot').classList.toggle('off', !(d&&d.status==='ok'));
+    $('#health-txt').textContent = d&&d.status==='ok' ? L('Backend connected','بک‌اند متصل است') : L('Backend unreachable','بک‌اند در دسترس نیست');
+  }catch(e){ $('#health-dot').classList.add('off'); $('#health-txt').textContent=L('Backend unreachable','بک‌اند در دسترس نیست'); }
+}
+function sidebar(){
+  const pages=[['phone.html','phone',L('Phone','شماره')],['email.html','email',L('Email','ایمیل')],['username.html','user',L('Username','یوزرنیم')],['settings.html','gear',L('Settings','تنظیمات')]];
+  $('#side').innerHTML=pages.map(([h,i,l])=>`<a class="nav ${location.pathname.endsWith(h)?'on in':'up'}" href="${h}">${ico(i,22,i=='gear'?'gear':'')}<span>${l}</span></a>`).join('');
+}
+header(); sidebar();
+
+$('#t-h1').textContent=L('Username search','جستجوی نام‌کاربری');
+$('#t-p').textContent=L('Checks which platforms have a public profile with this handle.','بررسی می‌کند کدام پلتفرم‌ها پروفایل عمومی با این نام‌کاربری دارند.');
+$('#run').textContent=L('Search','جستجو');
+
+let region = ls.g('wo_default_region') || 'all';
+function renderSeg(){
+  const opts=[['all',L('All','همه')],['iran',L('Iranian — direct','ایرانی — مستقیم')],['global',L('Global — needs VPN','جهانی — نیاز به VPN')]];
+  $('#regionseg').innerHTML=opts.map(([v,l])=>`<button data-r="${v}" class="${region==v?'on':''}">${esc(l)}</button>`).join('');
+  $$('#regionseg button').forEach(b=>b.onclick=()=>{region=b.dataset.r;renderSeg();updateNote()});
+  updateNote();
+}
+function updateNote(){
+  const n=$('#vpnote');
+  if(region==='global'){ n.hidden=false; n.textContent=L('From inside Iran, global platforms need your own VPN or proxy to be reachable — this tool does not route or hide traffic for you.','از داخل ایران، پلتفرم‌های جهانی نیاز به VPN یا پروکسی خودتان دارند — این ابزار ترافیک شما را مسیردهی یا پنهان نمی‌کند.'); }
+  else if(region==='iran'){ n.hidden=false; n.textContent=L('Iranian platforms should be reachable with a direct connection (no VPN).','پلتفرم‌های ایرانی باید با اتصال مستقیم (بدون VPN) در دسترس باشند.'); }
+  else { n.hidden=true; }
+}
+renderSeg();
+
+const BRAND={'Instagram':'#e1306c','Telegram':'#2aabee','X / Twitter':'#0f1419','TikTok':'#010101','Reddit':'#ff4500','Pinterest':'#e60023','Tumblr':'#35465c','LinkedIn':'#0a66c2','Mastodon':'#6364ff','GitHub':'#24292e','GitLab':'#fc6d26','Bitbucket':'#0052cc','CodePen':'#000000','Dev.to':'#0a0a0a','Replit':'#f26207','Kaggle':'#20beff','HuggingFace':'#ffd21e','NPM':'#cb3837','PyPI':'#3775a9','Stack Overflow':'#f48024','Steam':'#1b2838','Chess.com':'#769656','Lichess':'#000000','Twitch':'#9146ff','SoundCloud':'#ff5500','Spotify':'#1db954','Medium':'#000000','Dribbble':'#ea4c89','Behance':'#1769ff','DeviantArt':'#05cc47','Linktree':'#43e660','Quora':'#b92b27','Goodreads':'#372213','Keybase':'#33a0ff','Gravatar':'#1e8cbe','آپارات':'#ed145b','ویرگول':'#6a4fe0','روبیکا':'#7b3fe4','ایتا':'#f37021','بله':'#2fb9a4','دیجی‌کالا':'#d9043d','زومیت':'#0f62c9'};
+function initials(name){ return name.replace(/[^A-Za-z\u0600-\u06FF0-9]/g,'').slice(0,2).toUpperCase() || '•' }
+
+async function run(){
+  const u=$('#unin').value.trim().replace(/^@/,'');
+  if(!u) return;
+  $('#run').disabled=true;
+  const out=$('#out'); out.classList.add('ld');
+  try{
+    let url=`${apiBase()}/api/username?u=${encodeURIComponent(u)}&region=${region}`;
+    const proxy=ls.g('wo_proxy'); if(proxy) url+=`&proxy=${encodeURIComponent(proxy)}`;
+    const r=await fetch(url);
+    const data=await r.json();
+    out.classList.remove('ld');
+    if(!r.ok || !data.success){ out.innerHTML=errBox(data.message||L('Could not search this username.','جستجوی این نام‌کاربری ممکن نشد.')); return; }
+    render(data);
+    pushHistory('username', u, `${data.found_count}/${data.checked} ${L('found','پیدا شد')}`);
+  }catch(e){
+    out.classList.remove('ld');
+    out.innerHTML=errBox(L(`Backend not reachable at ${esc(apiBase())}. Start the Flask API and set the URL in Settings.`,`اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد. API فلسک را اجرا کنید و آدرس را در تنظیمات وارد کنید.`));
+  }finally{ $('#run').disabled=false; }
+}
+function errBox(m){ return `<div class="err up">⚠️ <span>${m}</span></div>` }
+
+function card(r,i){
+  return `<article class="res up sm" style="--i:${i}">
+    <div class="l1"><span class="lg" style="background:${BRAND[r.platform]||'#8a93a8'}">${initials(r.platform)}</span><b>${esc(r.platform)}</b></div>
+    ${r.bio?`<div class="bio"><b>${L('Bio','بیو')}:</b> ${esc(r.bio)}</div>`:''}
+    <a class="lk" href="${esc(r.url)}" target="_blank" rel="noopener">${L('Open profile','باز کردن پروفایل')} ↗</a>
+  </article>`;
+}
+function render(d){
+  const found=(d.results||[]).filter(r=>r.status==='FOUND');
+  const notFound=(d.results||[]).filter(r=>r.status==='NOT_FOUND').length;
+  const unknown=(d.results||[]).filter(r=>!['FOUND','NOT_FOUND'].includes(r.status)).length;
+  $('#out').innerHTML=`
+    <div class="rh"><h3>${L('Found','پیدا شد')}</h3><span class="tag m up sm">${found.length}</span></div>
+    <div class="cards">${found.length?found.map((r,i)=>card(r,i)).join(''):`<p style="color:var(--mu);margin:0">${L('No matching public profile found.','پروفایل عمومی مطابقی پیدا نشد.')}</p>`}</div>
+    <p style="color:var(--mu);font-size:12px;margin-top:20px">${L('Not found','پیدا نشد')}: ${notFound} · ${L('Unknown','نامشخص')}: ${unknown} · ${L('Total checked','کل بررسی‌شده')}: ${d.checked}</p>`;
+}
+
+$('#run').onclick=run;
+$('#unin').addEventListener('keydown', e=>{ if(e.key==='Enter') run(); });
+
+const msgs=[[0,'Waking the watchers','بیدار کردن دیده‌بان‌ها'],[40,'Connecting to your API','اتصال به API شما'],[75,'Ready','آماده']];
+let pr=0; const iv=setInterval(()=>{
+  pr=Math.min(100,pr+Math.random()*14+8);
+  $('#sp-b').style.width=pr+'%';
+  const m=[...msgs].reverse().find(x=>pr>=x[0]);
+  $('#sp-t').textContent=lang=='fa'?m[2]:m[1];
+  if(pr>=100){clearInterval(iv);setTimeout(()=>$('#splash').classList.add('off'),250)}
+},90);
+</script>
+</body>
+</html>
