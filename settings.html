@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WatcherOsint — Settings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&family=Vazirmatn:wght@400;600;800&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#e3e7ee;--sd:#a9b2c4;--sl:#fff;--g1:#eaeef5;--g2:#dce1ea;--tx:#232b3d;--mu:#586279;--bd:rgba(255,255,255,.55);--hi:.55;--ac:#b88429;--onac:#15110a;--ok:#17744d;--wn:#94560c;--er:#b8403c;--ln:rgba(120,132,160,.28);--fh:Sora,Vazirmatn,sans-serif;--fb:Manrope,Vazirmatn,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--wn:#e0a24a;--er:#e2645f;--ln:rgba(160,172,200,.16)}}
+:root[data-theme="dark"]{--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--wn:#e0a24a;--er:#e2645f;--ln:rgba(160,172,200,.16)}
+:root[lang=fa]{--fh:Vazirmatn,Sora,sans-serif;--fb:Vazirmatn,Manrope,sans-serif}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:radial-gradient(800px 420px at 92% -8%,color-mix(in srgb,var(--ac) 15%,transparent),transparent),radial-gradient(700px 420px at -6% 62%,color-mix(in srgb,var(--ac) 9%,transparent),transparent),var(--bg);background-attachment:fixed}
+body{margin:0;color:var(--tx);font:500 14px/1.55 var(--fb);min-height:100vh}
+h1,h2,h3{font-family:var(--fh);margin:0}h3{font-size:16px}
+button,input{font:inherit;color:inherit}button{border:0;background:none;cursor:pointer}
+a{text-decoration:none;color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.up{--d:8px;background:linear-gradient(145deg,var(--g1),var(--g2));border:1px solid var(--bd);box-shadow:var(--d) var(--d) calc(var(--d)*2.2) var(--sd),calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl)}
+.in{--d:10px;background:var(--bg);box-shadow:inset var(--d) var(--d) calc(var(--d)*2.2) var(--sd),inset calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl),inset 2px 3px 4px color-mix(in srgb,var(--sd) 70%,#000)}
+.sm{--d:5px}
+button.up,a.up{transition:.15s}button.up:active,a.up:active{background:var(--bg);box-shadow:inset 6px 6px 12px var(--sd),inset -6px -6px 12px var(--sl);transform:scale(.97)}
+.clay,.btn{--cc:var(--ac);color:var(--onac);border:0;background:linear-gradient(150deg,color-mix(in srgb,var(--cc) 70%,#fff),var(--cc) 58%,color-mix(in srgb,var(--cc) 80%,#000));box-shadow:inset 4px 5px 9px rgba(255,255,255,calc(var(--hi) + .1)),inset -5px -7px 12px rgba(0,0,0,.2),8px 12px 24px color-mix(in srgb,var(--cc) 38%,transparent)}
+.btn{height:48px;padding:0 24px;border-radius:17px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap}
+.btn:active{transform:translateY(2px) scale(.98)}
+.gh{height:44px;padding:0 18px;border-radius:14px;font-weight:700;color:var(--tx);display:inline-flex;align-items:center;justify-content:center;gap:8px}.dng{color:var(--er)}
+.card{border-radius:28px;padding:22px 26px}
+.fld{height:46px;border:0;border-radius:14px;padding:0 14px;background:var(--bg);font-weight:600;min-width:170px}
+.fld.wide{width:100%}
+#top{position:sticky;top:12px;z-index:60;margin:12px 14px 0;border-radius:28px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.sp{flex:1}.brand{display:flex;align-items:center;gap:13px;text-align:start}
+.bl{width:46px;height:46px;border-radius:16px;display:grid;place-items:center;flex:none}
+.bn{font:800 17px/1.1 var(--fh)}.bn b{color:var(--ac)}.bn small{display:block;font:600 12px var(--fb);color:var(--mu);margin-top:3px}
+.pill{display:flex;align-items:center;gap:9px;padding:9px 16px;border-radius:16px;font-weight:700;font-size:13px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;background:#2fae7a;box-shadow:0 0 0 4px rgba(47,174,122,.2);animation:pl 2s ease-in-out infinite}
+.dot.off{background:var(--er);box-shadow:0 0 0 4px rgba(184,64,60,.2);animation:none}
+.ib{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;font:800 14px var(--fh)}
+.lang{position:relative;display:flex;width:94px;height:46px;border-radius:23px;padding:4px;direction:ltr;flex:none}
+.lang span{flex:1;display:grid;place-items:center;font:800 13px Manrope,Vazirmatn,sans-serif;z-index:1;color:var(--mu);transition:color .3s}
+.lang:before{content:"";position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:19px;transition:transform .4s cubic-bezier(.3,1.5,.5,1);background:linear-gradient(150deg,color-mix(in srgb,var(--ac) 70%,#fff),var(--ac) 58%,color-mix(in srgb,var(--ac) 80%,#000));box-shadow:inset 3px 4px 7px rgba(255,255,255,.5),inset -3px -5px 8px rgba(0,0,0,.2),4px 6px 12px color-mix(in srgb,var(--ac) 40%,transparent)}
+.lang[data-l=fa]:before{transform:translateX(100%)}.lang[data-l=en] span:first-child,.lang[data-l=fa] span:last-child{color:var(--onac)}
+.sunI{display:none}html[data-eff=dark] .sunI{display:block}html[data-eff=dark] .moonI{display:none}
+.acct{position:relative}.pop{position:absolute;top:calc(100% + 16px);inset-inline-end:0;width:min(300px,86vw);border-radius:28px;padding:20px;display:flex;flex-direction:column;gap:12px;opacity:0;visibility:hidden;transform:translateY(10px) scale(.95);transform-origin:top right;transition:.28s cubic-bezier(.3,1.3,.5,1);z-index:61}
+html[dir=rtl] .pop{transform-origin:top left}
+.acct.open .pop{opacity:1;visibility:visible;transform:none}
+.pl{display:flex;gap:13px;align-items:center}.pl small{display:block;color:var(--mu);font-size:12px}.pl b{display:block}
+#splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:opacity .5s,visibility .5s}#splash.off{opacity:0;visibility:hidden;pointer-events:none}
+.si{display:flex;flex-direction:column;align-items:center;gap:22px;padding:20px;text-align:center}
+.sl{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;position:relative}
+.sl:before{content:"";position:absolute;inset:-12px;border-radius:50%;border:3px solid transparent;border-top-color:var(--ac);border-right-color:color-mix(in srgb,var(--ac) 35%,transparent);animation:spin 1.1s linear infinite}
+.sl svg{width:64px;height:64px;color:var(--ac)}
+.pb{width:min(220px,70vw);height:12px;border-radius:9px;overflow:hidden}.pb i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(150deg,color-mix(in srgb,var(--ac) 70%,#fff),var(--ac));transition:width .15s}
+@keyframes pl{50%{opacity:.3;transform:scale(1.6)}}@keyframes spin{to{transform:rotate(360deg)}}
+#shell{display:flex;gap:26px;padding:26px 14px;align-items:flex-start}
+#side{width:200px;position:sticky;top:96px;border-radius:28px;padding:14px;display:flex;flex-direction:column;gap:10px;flex:none}
+.nav{display:flex;align-items:center;gap:13px;height:52px;padding:0 16px;border-radius:17px;font-weight:700;color:var(--mu);text-align:start;width:100%}
+.nav.on{color:var(--tx)}.nav.on svg{color:var(--ac)}.nav:hover .gear,.nav.on .gear{animation:spin 4s linear infinite}
+main{flex:1;min-width:0;max-width:900px}
+.hd{margin-bottom:22px}.hd h1{font-size:26px;letter-spacing:-.3px}.hd p{margin:4px 0 0;color:var(--mu)}
+.cols{columns:2 380px;column-gap:24px}.cols .card{break-inside:avoid;margin-bottom:24px}
+.rh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding-bottom:12px;border-bottom:1px solid var(--ln)}
+.sr{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:50px;padding:10px 0;border-bottom:1px solid var(--ln);flex-wrap:wrap}.sr:last-child{border:0}
+.sr small{display:block;color:var(--mu);font-size:11.5px;margin-top:2px}
+.seg{display:flex;padding:5px;gap:4px;border-radius:15px}
+.seg button{padding:8px 14px;border-radius:11px;font-weight:700;color:var(--mu);font-size:12.5px}
+.seg button.on{color:var(--tx);background:linear-gradient(145deg,var(--g1),var(--g2));box-shadow:2px 2px 6px var(--sd),-2px -2px 6px var(--sl)}
+.tg{position:relative;width:52px;height:30px;flex:none}.tg input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer;z-index:2}
+.tg i{position:absolute;inset:0;border-radius:15px;background:var(--bg);box-shadow:inset 3px 3px 7px var(--sd),inset -3px -3px 7px var(--sl)}
+.tg i:after{content:"";position:absolute;top:4px;inset-inline-start:4px;width:22px;height:22px;border-radius:50%;transition:.25s;background:var(--mu)}
+.tg input:checked+i:after{inset-inline-start:26px;background:var(--ac)}
+.sw{display:flex;gap:10px}.sw button{width:30px;height:30px;border-radius:50%;--cc:var(--s);background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.6),transparent 40%),var(--s);box-shadow:inset -3px -4px 7px rgba(0,0,0,.25),3px 5px 10px color-mix(in srgb,var(--s) 40%,transparent)}.sw button.on{outline:2px solid var(--ac);outline-offset:3px}
+.note{font-size:12px;color:var(--mu);line-height:1.8;margin-top:4px}
+.hrow{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--ln);font-size:13px}.hrow:last-child{border:0}
+.hrow .t{font:700 11px var(--fb);color:var(--ac);padding:3px 9px;border-radius:9px;flex:none}
+.hrow .q{flex:1;min-width:0;font-family:'JetBrains Mono',monospace;direction:ltr;text-align:start;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hrow .s{color:var(--mu);font-size:11.5px;flex:none}
+.savebar{display:flex;gap:12px;justify-content:flex-end;margin-top:4px}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;pointer-events:none;padding:12px 22px;border-radius:18px;font-weight:700;z-index:90;transition:.3s;max-width:90vw;text-align:center}#toast.s{opacity:1;transform:translate(-50%,0)}
+.foot{text-align:center;color:var(--mu);font-size:11px;margin:30px 0 10px;opacity:.6}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:901px){#toast{bottom:28px}}
+@media (max-width:900px){#shell{display:block;padding:14px 12px 108px}
+#side{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));top:auto;width:auto;flex-direction:row;padding:8px;border-radius:26px;z-index:50;gap:4px}
+.nav{flex-direction:column;height:60px;gap:3px;padding:0;justify-content:center;font-size:11px;flex:1}
+.cols{columns:1}.sr{flex-wrap:wrap}.sr .fld{width:100%}.pill{display:none}}
+@media (max-width:560px){.bn{display:none}.lang{width:86px}#top{padding:8px 10px;gap:8px}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="si"><div class="sl in"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M16 2l12 7v14l-12 7L4 23V9z"/><path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></svg></div>
+<div style="font:800 22px var(--fh)">Watcher<span style="color:var(--ac)">Osint</span></div>
+<div class="pb in sm"><i id="sp-b"></i></div>
+<div style="color:var(--mu);font-weight:700" id="sp-t"></div></div></div>
+
+<header id="top" class="up"></header>
+<div id="shell">
+  <aside id="side" class="up"></aside>
+  <main>
+    <div class="hd"><h1 id="t-h1"></h1><p id="t-p"></p></div>
+    <div id="sections"></div>
+    <div class="savebar"><button class="up gh" id="btn-reset"></button><button class="btn clay" id="btn-save"></button></div>
+    <div class="foot">WatcherOsint v1.0</div>
+  </main>
+</div>
+<div id="toast" class="up" role="status"></div>
+
+<script>
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const ls = {
+  g: k => { try { return localStorage.getItem(k) } catch(e) { return null } },
+  s: (k,v) => { try { localStorage.setItem(k,v) } catch(e){} },
+  d: k => { try { localStorage.removeItem(k) } catch(e){} }
+};
+const H = document.documentElement;
+let lang = ls.g('lang') || (/^fa/.test(navigator.language) ? 'fa' : 'en');
+let th   = ls.g('th')   || 'auto';
+let acI  = +ls.g('ac')  || 0;
+const L = (e,f) => lang === 'fa' ? f : e;
+H.lang = lang; H.dir = lang === 'fa' ? 'rtl' : 'ltr';
+
+function esc(s){ return String(s ?? '').replace(/[&<>"'`=\/]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;','=':'&#61;','/':'&#47;'}[c])) }
+
+const SW = [['#b88429','#15110a'],['#1f9d8e','#04211d'],['#6a52c8','#ffffff'],['#c8405f','#ffffff']];
+
+function setTheme(v){
+  th = v; ls.s('th', v);
+  v === 'auto' ? H.removeAttribute('data-theme') : H.setAttribute('data-theme', v);
+  H.dataset.eff = v === 'auto'
+    ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : v;
+}
+function setAc(i){
+  acI = i; ls.s('ac', i);
+  H.style.setProperty('--ac', SW[i][0]);
+  H.style.setProperty('--onac', SW[i][1]);
+}
+setTheme(th); setAc(acI);
+
+function toast(m){
+  const t = $('#toast');
+  t.textContent = m;
+  t.classList.add('s');
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => t.classList.remove('s'), 2400);
+}
+
+/* ---------- API ---------- */
+function apiBase(){ return ls.g('wo_api_base') || 'http://127.0.0.1:5000' }
+
+let _sessionCache = undefined; // undefined=not loaded, null=not logged in, object=logged in
+
+async function fetchSession(){
+  try {
+    const r = await fetch(`${apiBase()}/api/auth/me`, {
+      credentials: 'include',
+      signal: AbortSignal.timeout(5000)
+    });
+    if(!r.ok) return null;
+    const d = await r.json();
+    return d && d.authenticated ? d.user : null;
+  } catch(e){
+    return null;
+  }
+}
+
+async function getSession(force){
+  if(force || _sessionCache === undefined) _sessionCache = await fetchSession();
+  return _sessionCache;
+}
+
+async function getCsrf(){
+  const r = await fetch(`${apiBase()}/api/auth/csrf`, { credentials: 'include' });
+  if(!r.ok) throw new Error('csrf');
+  const d = await r.json();
+  return d.csrf_token;
+}
+
+async function doLogout(){
+  try {
+    const csrf = await getCsrf();
+    await fetch(`${apiBase()}/api/auth/logout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'X-CSRFToken': csrf }
+    });
+  } catch(e){ /* ignore */ }
+  _sessionCache = null;
+  ls.d('wo_session');
+  location.href = 'login.html';
+}
+
+/* ---------- icons ---------- */
+const ic = {
+  phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>',
+  email:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon:'<path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/>',
+  out:'<path d="M9 4H5a2 2 0 00-2 2v12a2 2 0 002 2h4M16 8l4 4-4 4M20 12H9"/>',
+  key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>'
+};
+const ico = (n,s=20,c='') => `<svg class="${c}" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[n]}</svg>`;
+const LOGO = '<svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M16 2l12 7v14l-12 7L4 23V9z"/><path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/><circle cx="16" cy="16" r="2.6" fill="currentColor"/></svg>';
+const ini = n => (String(n).match(/[A-Za-z\u0600-\u06FF0-9]/g) || ['W']).slice(0,2).join('').toUpperCase();
+
+/* ---------- header ---------- */
+function profPop(s){
+  if(s) return `
+    <div class="pl">
+      <span class="av clay" style="width:46px;height:46px;border-radius:16px;display:grid;place-items:center;font:800 13px var(--fh)">${ini(s.username)}</span>
+      <div><b>${esc(s.username)}</b><small dir="ltr">${esc(s.email)}</small></div>
+    </div>
+    <a class="up gh" href="settings.html">${ico('gear',18)} ${L('Settings','تنظیمات')}</a>
+    <button class="up gh dng" id="pop-logout">${ico('out',18)} ${L('Log out','خروج')}</button>`;
+  return `
+    <div class="pl">
+      <span class="bl clay">${LOGO}</span>
+      <div><b>${L('Welcome to WatcherOsint','به WatcherOsint خوش آمدید')}</b>
+      <small>${L('Log in to save history and sync settings.','برای ذخیره تاریخچه و همگام‌سازی تنظیمات وارد شوید.')}</small></div>
+    </div>
+    <a class="btn" href="login.html">${ico('key',18)} ${L('Log in','ورود')}</a>
+    <a class="up gh" href="login.html#signup">${L('Create account','ساخت حساب')}</a>`;
+}
+
+async function header(){
+  const s = await getSession(true);
+  $('#top').innerHTML = `
+    <a class="brand" href="phone.html" aria-label="WatcherOsint">
+      <span class="bl clay">${LOGO}</span>
+      <span class="bn">Watcher<b>Osint</b><small>${L('Intelligence suite','مجموعه اطلاعاتی')}</small></span>
+    </a>
+    <span class="pill in sm" id="health-pill">
+      <i class="dot" id="health-dot"></i>
+      <span id="health-txt">${L('Checking backend…','بررسی بک‌اند…')}</span>
+    </span>
+    <span class="sp"></span>
+    <button class="lang in sm" id="btn-lang" data-l="${lang}" aria-label="${L('Switch language','تغییر زبان')}">
+      <span>EN</span><span>فا</span>
+    </button>
+    <button class="ib up" id="btn-theme" aria-label="${L('Switch theme','تغییر پوسته')}">
+      <span class="moonI">${ico('moon',22)}</span>
+      <span class="sunI">${ico('sun',22)}</span>
+    </button>
+    <div class="acct" id="acct">
+      <button class="ib clay" id="btn-acct" aria-haspopup="true" aria-label="${L('Account','حساب کاربری')}">${s ? ini(s.username) : ico('key',20)}</button>
+      <div class="pop up">${profPop(s)}</div>
+    </div>`;
+
+  $('#btn-lang').onclick  = () => { ls.s('lang', lang === 'fa' ? 'en' : 'fa'); location.reload(); };
+  $('#btn-theme').onclick = () => setTheme(H.dataset.eff === 'dark' ? 'light' : 'dark');
+  $('#btn-acct').onclick  = () => $('#acct').classList.toggle('open');
+  document.addEventListener('click', e => { if(!e.target.closest('#acct')) $('#acct').classList.remove('open'); });
+
+  const pl = $('#pop-logout');
+  if(pl) pl.onclick = doLogout;
+
+  checkHealth();
+}
+
+async function checkHealth(){
+  const dot = $('#health-dot'), txt = $('#health-txt');
+  if(!dot || !txt) return;
+  try {
+    const r = await fetch(`${apiBase()}/api/health`, { signal: AbortSignal.timeout(4000) });
+    const d = r.ok ? await r.json() : null;
+    const ok = d && d.status === 'ok';
+    dot.classList.toggle('off', !ok);
+    txt.textContent = ok
+      ? L('Backend connected','بک‌اند متصل است')
+      : L('Backend unreachable','بک‌اند در دسترس نیست');
+  } catch(e){
+    dot.classList.add('off');
+    txt.textContent = L('Backend unreachable','بک‌اند در دسترس نیست');
+  }
+}
+
+/* ---------- sidebar ---------- */
+function sidebar(){
+  const pages = [
+    ['phone.html','phone',L('Phone','شماره')],
+    ['email.html','email',L('Email','ایمیل')],
+    ['username.html','user',L('Username','یوزرنیم')],
+    ['settings.html','gear',L('Settings','تنظیمات')]
+  ];
+  $('#side').innerHTML = pages.map(([h,i,l]) =>
+    `<a class="nav ${location.pathname.endsWith(h) ? 'on in' : 'up'}" href="${h}">${ico(i,22,i==='gear'?'gear':'')}<span>${l}</span></a>`
+  ).join('');
+}
+
+/* ---------- sections ---------- */
+async function sectionsHTML(){
+  const sess = await getSession();
+  const base      = ls.g('wo_api_base')      || 'http://127.0.0.1:5000';
+  const proxy     = ls.g('wo_proxy')         || '';
+  const repo      = ls.g('wo_repo')          || 'https://github.com/WatcherAm/WatcherAm';
+  const numverify = ls.g('wo_key_numverify') || '';
+  const hunter    = ls.g('wo_key_hunter')    || '';
+  const incIranian  = ls.g('wo_inc_iranian') !== '0';
+  const defRegion   = ls.g('wo_default_region') || 'all';
+  let hist = []; try { hist = JSON.parse(ls.g('wo_history')) || [] } catch(e){}
+
+  return `
+  <div class="cols">
+    <section class="card up">
+      <div class="rh"><h3>${L('Appearance','ظاهر')}</h3></div>
+      <div class="sr"><div><b>${L('Theme','پوسته')}</b><small>${L('Auto follows your device','خودکار با دستگاه هماهنگ است')}</small></div>
+        <div class="seg in sm">${['auto','light','dark'].map(v=>`<button data-th="${v}" class="${th===v?'on':''}">${{auto:L('Auto','خودکار'),light:L('Light','روشن'),dark:L('Dark','تیره')}[v]}</button>`).join('')}</div></div>
+      <div class="sr"><div><b>${L('Language','زبان')}</b><small>${L('Changes the whole app, including direction','کل برنامه و جهت نوشتار را تغییر می‌دهد')}</small></div>
+        <div class="seg in sm">${['en','fa'].map(v=>`<button data-lang="${v}" class="${lang===v?'on':''}">${v==='en'?'English':'فارسی'}</button>`).join('')}</div></div>
+      <div class="sr"><div><b>${L('Accent color','رنگ تأکید')}</b></div>
+        <div class="sw">${SW.map((s,i)=>`<button data-ac="${i}" class="${i===acI?'on':''}" aria-label="accent ${i+1}" style="--s:${s[0]}"></button>`).join('')}</div></div>
+    </section>
+
+    <section class="card up">
+      <div class="rh"><h3>${L('API connection','اتصال API')}</h3></div>
+      <div class="sr"><div><b>${L('Backend base URL','آدرس پایه بک‌اند')}</b><small>${L('Where app.py is running','جایی که app.py اجرا می‌شود')}</small></div>
+        <input class="fld in sm" id="f-apibase" dir="ltr" value="${esc(base)}" style="min-width:220px"></div>
+      <div class="sr"><div><b>${L('Proxy / VPN endpoint','آدرس پروکسی / VPN')}</b><small>${L('Used only for Username → global-platform checks','فقط برای بررسی پلتفرم‌های جهانی در صفحه یوزرنیم')}</small></div>
+        <input class="fld in sm" id="f-proxy" dir="ltr" placeholder="socks5://127.0.0.1:9050" value="${esc(proxy)}" style="min-width:220px"></div>
+      <div class="sr"><div><b>${L('Repository','مخزن گیت‌هاب')}</b></div>
+        <a class="gh up sm" href="${esc(repo)}" target="_blank" rel="noopener" dir="ltr">${esc(repo.replace('https://',''))}</a></div>
+    </section>
+
+    <section class="card up">
+      <div class="rh"><h3>${L('Scan preferences','ترجیحات اسکن')}</h3></div>
+      <div class="sr"><div><b>${L('Include Iranian sites in email scan','شامل سایت‌های ایرانی در اسکن ایمیل')}</b></div>
+        <label class="tg"><input type="checkbox" id="f-iranian" ${incIranian?'checked':''}><i></i></label></div>
+      <div class="sr"><div><b>${L('Default username region','منطقه پیش‌فرض یوزرنیم')}</b></div>
+        <div class="seg in sm">${[['all',L('All','همه')],['iran',L('Iranian','ایرانی')],['global',L('Global','جهانی')]].map(([v,l])=>`<button data-region="${v}" class="${defRegion===v?'on':''}">${l}</button>`).join('')}</div></div>
+    </section>
+
+    <section class="card up">
+      <div class="rh"><h3>${L('Third-party API keys','کلیدهای API سرویس‌های دیگر')}</h3></div>
+      <p class="note">${L('For real security these belong on the server as environment variables (set in app.py), never in a browser. The fields below are just your own local notes.','از نظر امنیتی این کلیدها باید روی سرور به‌صورت متغیر محیطی باشند، نه در مرورگر. فیلدهای زیر فقط یادداشت شخصی شما هستند.')}</p>
+      <div class="sr"><div><b>Numverify</b></div><input class="fld in sm" id="f-numverify" dir="ltr" type="password" placeholder="API key" value="${esc(numverify)}"></div>
+      <div class="sr"><div><b>Hunter.io</b></div><input class="fld in sm" id="f-hunter" dir="ltr" type="password" placeholder="API key" value="${esc(hunter)}"></div>
+    </section>
+
+    <section class="card up">
+      <div class="rh"><h3>${L('Account','حساب کاربری')}</h3></div>
+      ${sess ? `
+      <div class="sr"><div><b>${L('Signed in as','وارد شده به‌عنوان')}</b><small dir="ltr">${esc(sess.email)}</small></div>
+        <button class="up gh sm dng" id="btn-logout2">${L('Log out','خروج')}</button></div>
+      <div class="sr" style="flex-direction:column;align-items:stretch;gap:10px">
+        <div><b>${L('Change password','تغییر رمز عبور')}</b></div>
+        <input class="fld in sm wide" id="f-curpass" dir="ltr" type="password" placeholder="${L('Current password','رمز فعلی')}">
+        <input class="fld in sm wide" id="f-newpass" dir="ltr" type="password" placeholder="${L('New password (min 8 chars)','رمز جدید (حداقل ۸ کاراکتر)')}">
+        <button class="up gh sm" id="btn-chpass" style="align-self:flex-start">${L('Update password','به‌روزرسانی رمز')}</button>
+      </div>` : `
+      <div class="sr"><div><b>${L('Not signed in','وارد نشده‌اید')}</b><small>${L('Sign in to change your password or sync settings.','برای تغییر رمز یا همگام‌سازی تنظیمات وارد شوید.')}</small></div>
+        <a class="gh up sm" href="login.html">${L('Go to login','رفتن به صفحه ورود')}</a></div>`}
+    </section>
+
+    <section class="card up">
+      <div class="rh"><h3>${L('History','تاریخچه')} (${hist.length})</h3></div>
+      <div id="histlist">${hist.length ? hist.slice(0,15).map(h=>`<div class="hrow"><span class="t up sm">${esc(h.type)}</span><span class="q">${esc(h.q)}</span><span class="s">${esc(h.summary||'')}</span></div>`).join('') : `<p class="note">${L('No lookups yet.','هنوز جستجویی ثبت نشده.')}</p>`}</div>
+      <div class="sr"><div><b>${L('Clear all history','پاک‌کردن کل تاریخچه')}</b><small>${L('This cannot be undone','این کار قابل بازگشت نیست')}</small></div>
+        <button class="up gh sm dng" id="btn-clearhist">${L('Clear history','پاک کردن تاریخچه')}</button></div>
+      <div class="sr"><div><b>${L('Clear everything','پاک‌کردن همه‌چیز')}</b><small>${L('Sign out and erase all local data on this browser','خروج و پاک‌کردن همه داده‌های محلی این مرورگر')}</small></div>
+        <button class="up gh sm dng" id="btn-clearall">${L('Clear everything','پاک‌کردن همه‌چیز')}</button></div>
+    </section>
+  </div>`;
+}
+
+/* ---------- render ---------- */
+async function render(){
+  $('#t-h1').textContent = L('Settings','تنظیمات');
+  $('#t-p').textContent  = L('Appearance, API connection, account and your data.','ظاهر، اتصال API، حساب کاربری و داده‌های شما.');
+  $('#btn-reset').textContent = L('Reset','بازنشانی');
+  $('#btn-save').textContent  = L('Save changes','ذخیره تغییرات');
+
+  $('#sections').innerHTML = await sectionsHTML();
+  bind();
+}
+
+/* ---------- bind events ---------- */
+function bind(){
+  $$('[data-th]').forEach(b => b.onclick = () => { setTheme(b.dataset.th); render(); });
+  $$('[data-lang]').forEach(b => b.onclick = () => { ls.s('lang', b.dataset.lang); location.reload(); });
+  $$('[data-ac]').forEach(b => b.onclick = () => { setAc(+b.dataset.ac); render(); });
+  $$('[data-region]').forEach(b => b.onclick = () => {
+    ls.s('wo_default_region', b.dataset.region);
+    render();
+    toast(L('Default region updated','منطقه پیش‌فرض به‌روزرسانی شد'));
+  });
+
+  // change password
+  const btnCh = $('#btn-chpass');
+  if(btnCh) btnCh.onclick = async () => {
+    const cur = $('#f-curpass').value;
+    const nw  = $('#f-newpass').value;
+    if(nw.length < 8) return toast(L('New password needs at least 8 characters','رمز جدید باید حداقل ۸ کاراکتر باشد'));
+    btnCh.disabled = true;
+    try {
+      const csrf = await getCsrf();
+      const r = await fetch(`${apiBase()}/api/auth/change-password`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type':'application/json', 'X-CSRFToken': csrf },
+        body: JSON.stringify({ current_password: cur, new_password: nw })
+      });
+      const d = await r.json().catch(() => ({}));
+      if(!r.ok) return toast(d.error || L('Failed to change password','تغییر رمز ناموفق بود'));
+      $('#f-curpass').value = '';
+      $('#f-newpass').value = '';
+      toast(L('Password updated','رمز به‌روزرسانی شد'));
+    } catch(e){
+      toast(L('Server unreachable','سرور در دسترس نیست'));
+    } finally {
+      btnCh.disabled = false;
+    }
+  };
+
+  // logout buttons
+  const b2 = $('#btn-logout2');
+  if(b2) b2.onclick = doLogout;
+
+  // history clear
+  $('#btn-clearhist').onclick = () => {
+    ls.s('wo_history','[]');
+    render();
+    toast(L('History cleared','تاریخچه پاک شد'));
+  };
+
+  // clear everything (local only, then logout on server)
+  $('#btn-clearall').onclick = async () => {
+    if(!confirm(L('This will sign you out and erase all local WatcherOsint data on this browser. Continue?','این کار شما را خارج می‌کند و همه داده‌های محلی WatcherOsint را پاک می‌کند. ادامه می‌دهید؟'))) return;
+    ['lang','th','ac','wo_users','wo_session','wo_attempts','wo_reset','wo_api_base','wo_proxy','wo_repo',
+     'wo_key_numverify','wo_key_hunter','wo_history','wo_inc_iranian','wo_default_region'].forEach(k => ls.d(k));
+    toast(L('Everything cleared','همه‌چیز پاک شد'));
+    await doLogout();
+  };
+}
+
+/* ---------- save / reset ---------- */
+async function onSave(){
+  const newBase = $('#f-apibase').value.trim() || 'http://127.0.0.1:5000';
+  ls.s('wo_api_base', newBase);
+  ls.s('wo_proxy', $('#f-proxy').value.trim());
+  ls.s('wo_key_numverify', $('#f-numverify').value.trim());
+  ls.s('wo_key_hunter', $('#f-hunter').value.trim());
+  ls.s('wo_inc_iranian', $('#f-iranian').checked ? '1' : '0');
+
+  // invalidate session cache — may be a different backend now
+  _sessionCache = undefined;
+  await getSession(true);
+  checkHealth();
+
+  toast(L('Settings saved','تنظیمات ذخیره شد'));
+}
+
+async function onReset(){
+  if(!confirm(L('Reset settings to defaults? (history and your account stay)','تنظیمات به حالت پیش‌فرض برگردد؟ (تاریخچه و حساب شما می‌ماند)'))) return;
+  ['ac','wo_api_base','wo_proxy','wo_key_numverify','wo_key_hunter','wo_inc_iranian','wo_default_region'].forEach(k => ls.d(k));
+  H.style.removeProperty('--ac');
+  H.style.removeProperty('--onac');
+  acI = 0; setAc(0);
+  _sessionCache = undefined;
+  await render();
+  toast(L('Settings reset','تنظیمات بازنشانی شد'));
+}
+
+/* ---------- boot ---------- */
+(async function boot(){
+  await header();
+  sidebar();
+  await render();
+
+  $('#btn-save').onclick  = onSave;
+  $('#btn-reset').onclick = onReset;
+
+  // splash
+  const msgs = [[0,'Waking the watchers','بیدار کردن دیده‌بان‌ها'],[40,'Connecting to your API','اتصال به API شما'],[75,'Ready','آماده']];
+  let pr = 0;
+  const iv = setInterval(() => {
+    pr = Math.min(100, pr + Math.random()*14 + 8);
+    $('#sp-b').style.width = pr + '%';
+    const m = [...msgs].reverse().find(x => pr >= x[0]);
+    $('#sp-t').textContent = lang === 'fa' ? m[2] : m[1];
+    if(pr >= 100){ clearInterval(iv); setTimeout(() => $('#splash').classList.add('off'), 250); }
+  }, 90);
+})();
+</script>
+</body>
+</html>
