@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WatcherOsint — Login</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@500;600;700;800&family=Vazirmatn:wght@400;600;800&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#e3e7ee;--sd:#a9b2c4;--sl:#fff;--g1:#eaeef5;--g2:#dce1ea;--tx:#232b3d;--mu:#586279;--bd:rgba(255,255,255,.55);--hi:.55;--ac:#b88429;--onac:#15110a;--ok:#17744d;--er:#b8403c;--ln:rgba(120,132,160,.28);--fh:Sora,Vazirmatn,sans-serif;--fb:Manrope,Vazirmatn,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--er:#e2645f;--ln:rgba(160,172,200,.16)}}
+:root[data-theme="dark"]{--bg:#1b2030;--sd:#0e1119;--sl:#2a3249;--g1:#242b3e;--g2:#181d2a;--tx:#e8ebf4;--mu:#a0aac0;--bd:rgba(255,255,255,.06);--hi:.24;--ok:#4cc38a;--er:#e2645f;--ln:rgba(160,172,200,.16)}
+:root[lang=fa]{--fh:Vazirmatn,Sora,sans-serif;--fb:Vazirmatn,Manrope,sans-serif}
+html{background:radial-gradient(800px 420px at 92% -8%,color-mix(in srgb,var(--ac) 15%,transparent),transparent),radial-gradient(700px 420px at -6% 62%,color-mix(in srgb,var(--ac) 9%,transparent),transparent),var(--bg);background-attachment:fixed}
+body{margin:0;color:var(--tx);font:500 14px/1.55 var(--fb);min-height:100vh}
+h1,h2,h3{font-family:var(--fh);margin:0}
+button,input{font:inherit;color:inherit}button{border:0;background:none;cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.up{--d:8px;background:linear-gradient(145deg,var(--g1),var(--g2));border:1px solid var(--bd);box-shadow:var(--d) var(--d) calc(var(--d)*2.2) var(--sd),calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl)}
+.in{--d:10px;background:var(--bg);box-shadow:inset var(--d) var(--d) calc(var(--d)*2.2) var(--sd),inset calc(var(--d)*-1) calc(var(--d)*-1) calc(var(--d)*2.2) var(--sl),inset 2px 3px 4px color-mix(in srgb,var(--sd) 70%,#000)}
+.sm{--d:5px}
+.clay{--cc:var(--ac);color:var(--onac);border:0;background:linear-gradient(150deg,color-mix(in srgb,var(--cc) 70%,#fff),var(--cc) 58%,color-mix(in srgb,var(--cc) 80%,#000));box-shadow:inset 4px 5px 9px rgba(255,255,255,calc(var(--hi) + .1)),inset -5px -7px 12px rgba(0,0,0,.2),8px 12px 24px color-mix(in srgb,var(--cc) 38%,transparent)}
+.btn{height:50px;padding:0 28px;border-radius:20px;font-weight:800;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.15s;width:100%}
+.btn:active{transform:translateY(2px) scale(.98)}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.gh{height:48px;padding:0 18px;border-radius:16px;font-weight:700;color:var(--tx);display:inline-flex;align-items:center;justify-content:center;gap:10px}
+body{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.wrap{width:100%;max-width:980px;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.hero2{display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.hero2 h1{font-size:28px;line-height:1.3;max-width:14em}
+.hero2 p{color:var(--mu);max-width:28em;margin:0}
+.bl{width:70px;height:70px;border-radius:24px;display:grid;place-items:center}
+.panel{width:100%;max-width:440px;justify-self:center;border-radius:32px;padding:26px;display:flex;flex-direction:column;gap:16px;position:relative}
+.seg{display:flex;padding:5px;gap:4px;border-radius:17px}
+.seg button{flex:1;padding:10px 14px;border-radius:13px;font-weight:700;color:var(--mu)}
+.seg button.on{background:linear-gradient(145deg,var(--g1),var(--g2));box-shadow:3px 3px 8px var(--sd),-3px -3px 8px var(--sl);color:var(--tx)}
+.fm{display:flex;flex-direction:column;gap:14px}
+label.lb{display:flex;flex-direction:column;gap:7px;font-weight:700;font-size:13px}
+.fld{width:100%;height:52px;border:0;border-radius:16px;padding:0 16px;font-weight:600;background:var(--bg)}
+.pw{position:relative}
+.pw .fld{padding-inline-end:86px}
+.pw button{position:absolute;inset-inline-end:8px;top:8px;height:36px;padding:0 14px;border-radius:11px;font-size:12px;font-weight:700;color:var(--mu);white-space:nowrap}
+.err{color:var(--er);font-size:12.5px;font-weight:700;display:flex;gap:6px;align-items:flex-start;min-height:0}
+.ok{color:var(--ok);font-size:12.5px;font-weight:700}
+.st{display:flex;gap:6px}.st i{flex:1;height:7px;border-radius:4px;background:var(--ln);transition:.3s}
+.ck{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mu)}
+.ck input{accent-color:var(--ac);width:18px;height:18px;flex:none}
+.or{display:flex;align-items:center;gap:12px;color:var(--mu);font-size:12px}
+.or:before,.or:after{content:"";flex:1;height:1px;background:var(--ln)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+a.lk{color:var(--ac);font-weight:700;text-decoration:underline;text-underline-offset:3px;background:none;font-size:13px}
+.codewrap{display:flex;gap:10px;justify-content:center;direction:ltr}
+.codewrap input{width:48px;height:58px;text-align:center;font:800 22px 'JetBrains Mono',monospace;border-radius:16px;border:0;background:var(--bg)}
+.codewrap input.bad{box-shadow:inset 3px 4px 8px var(--sd),inset -3px -4px 8px var(--sl),0 0 0 2px var(--er)}
+.center{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.foot{position:fixed;bottom:12px;inset-inline-end:16px;font:700 11px var(--fb);color:var(--mu);opacity:.6}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);opacity:0;pointer-events:none;padding:12px 22px;border-radius:18px;font-weight:700;z-index:90;transition:.3s;max-width:90vw;text-align:center}
+#toast.s{opacity:1;transform:translate(-50%,0)}
+.back{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--mu);align-self:flex-start}
+#splash{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);transition:opacity .5s,visibility .5s}
+#splash.off{opacity:0;visibility:hidden;pointer-events:none}
+.si{display:flex;flex-direction:column;align-items:center;gap:22px;padding:20px;text-align:center}
+.sl{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;position:relative}
+.sl:before{content:"";position:absolute;inset:-12px;border-radius:50%;border:3px solid transparent;border-top-color:var(--ac);border-right-color:color-mix(in srgb,var(--ac) 35%,transparent);animation:spin 1.1s linear infinite}
+.sl svg{width:64px;height:64px;color:var(--ac)}
+.pb{width:min(220px,70vw);height:12px;border-radius:9px;overflow:hidden}
+.pb i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(150deg,color-mix(in srgb,var(--ac) 70%,#fff),var(--ac));transition:width .15s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:860px){.wrap{grid-template-columns:1fr}.hero2{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="si">
+    <div class="sl in">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M16 2l12 7v14l-12 7L4 23V9z"/>
+        <path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/>
+        <circle cx="16" cy="16" r="2.6" fill="currentColor"/>
+      </svg>
+    </div>
+    <div style="font:800 22px var(--fh)">Watcher<span style="color:var(--ac)">Osint</span></div>
+    <div class="pb in sm"><i id="sp-b"></i></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="hero2">
+    <div class="bl clay">
+      <svg viewBox="0 0 32 32" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+        <path d="M16 2l12 7v14l-12 7L4 23V9z"/>
+        <path d="M8 16c2.5-4 13.5-4 16 0-2.5 4-13.5 4-16 0z"/>
+        <circle cx="16" cy="16" r="2.6" fill="currentColor"/>
+      </svg>
+    </div>
+    <h1 id="h-hero">Your workspace for digital footprint lookups</h1>
+    <p id="p-hero">Sign in to save reports and sync your settings across devices.</p>
+  </div>
+  <div class="panel up" id="panel"></div>
+</div>
+
+<div id="toast" class="up" role="status"></div>
+<div class="foot">WatcherOsint v1.0</div>
+
+<script>
+'use strict';
+
+/* ---------------- helpers ---------------- */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const H = document.documentElement;
+const ls = {
+  g: k => { try { return localStorage.getItem(k) } catch(e) { return null } },
+  s: (k,v) => { try { localStorage.setItem(k,v) } catch(e){} },
+  d: k => { try { localStorage.removeItem(k) } catch(e){} }
+};
+
+let lang = ls.g('lang') || (/^fa/.test(navigator.language) ? 'fa' : 'en');
+let th   = ls.g('th')   || 'auto';
+const L = (e,f) => lang === 'fa' ? f : e;
+H.lang = lang;
+H.dir  = lang === 'fa' ? 'rtl' : 'ltr';
+function setTheme(v){
+  th = v; ls.s('th', v);
+  v === 'auto' ? H.removeAttribute('data-theme') : H.setAttribute('data-theme', v);
+  H.dataset.eff = v === 'auto'
+    ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    : v;
+}
+setTheme(th);
+
+$('#h-hero').textContent = L('Your workspace for digital footprint lookups','فضای کاری شما برای جستجوی ردپای دیجیتال');
+$('#p-hero').textContent = L('Sign in to save reports and sync your settings across devices.','وارد شوید تا گزارش‌ها ذخیره و تنظیمات شما همگام شوند.');
+
+function esc(s){
+  return String(s ?? '').replace(/[&<>"'`=\/]/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;','=':'&#61;','/':'&#47;'
+  }[c]));
+}
+const EMAIL_RE = /^[^\s@<>"'`]{1,64}@[^\s@<>"'`]{1,190}\.[a-zA-Z]{2,24}$/;
+function sanitizeField(v, max=190){ return String(v||'').replace(/[<>`]/g,'').trim().slice(0, max); }
+
+/* ---------------- API base ---------------- */
+const DEFAULT_API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || !location.hostname)
+  ? 'http://127.0.0.1:5000'
+  : (location.origin.startsWith('http') ? location.origin : 'https://YOUR-APP.onrender.com'); // ← اگر HTML را از Flask سرو می‌کنی، location.origin درست است
+function apiBase(){ return ls.g('wo_api_base') || DEFAULT_API; }
+
+/* ---------------- CSRF + fetch ---------------- */
+let _csrfCache = null;
+async function getCsrf(force){
+  if(_csrfCache && !force) return _csrfCache;
+  const r = await fetch(`${apiBase()}/api/auth/csrf`, { credentials:'include' });
+  if(!r.ok) throw new Error('csrf_failed');
+  const d = await r.json();
+  _csrfCache = d.token || d.csrf_token || null;
+  return _csrfCache;
+}
+
+async function api(path, opts={}){
+  const headers = Object.assign({'Content-Type':'application/json'}, opts.headers || {});
+  if(opts.method && opts.method !== 'GET' && _csrfCache){
+    headers['X-CSRF-Token'] = _csrfCache;
+  }
+  const r = await fetch(`${apiBase()}${path}`, Object.assign({credentials:'include'}, opts, {headers}));
+  let data;
+  try { data = await r.json(); } catch(e){ data = { success:false, message:L('Unexpected server response','پاسخ غیرمنتظره از سرور') }; }
+  return { ok: r.ok, status: r.status, data };
+}
+
+/* ---------------- state ---------------- */
+let currentUser = null;
+let backendReachable = true;
+let mode = (location.hash === '#signup') ? 'signup' : 'login';
+let busy = false;
+let resetStep = 0, resetEmail = '', resetCode = '';
+
+/* ---------------- toast ---------------- */
+function toast(m){
+  const t = $('#toast');
+  t.textContent = m;
+  t.classList.add('s');
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => t.classList.remove('s'), 2600);
+}
+
+/* ---------------- OAuth icons ---------------- */
+const GICON = `<svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.8 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 10.1-2 13.7-5.2l-6.3-5.3C29.4 35.4 26.8 36 24 36c-5.2 0-9.7-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 2.8-2.9 5.1-5.3 6.5l6.3 5.3C39.9 36.9 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>`;
+const HICON = `<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>`;
+
+/* ---------------- auth check ---------------- */
+async function checkAuth(){
+  try{
+    const r = await fetch(`${apiBase()}/api/auth/me`, { credentials:'include' });
+    const d = await r.json();
+    currentUser = d.authenticated ? d.user : null;
+    backendReachable = true;
+  }catch(e){
+    currentUser = null;
+    backendReachable = false;
+  }
+}
+
+/* ---------------- views ---------------- */
+function connBanner(){
+  if(backendReachable) return '';
+  return `<div class="err" style="margin-bottom:4px">⚠️ <span>${L(
+    `Backend not reachable at ${esc(apiBase())}. Start the Flask API, or fix the URL in Settings.`,
+    `اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد. API فلسک را اجرا کنید.`
+  )}</span></div>`;
+}
+
+function authView(){
+  return `
+  <div class="seg in sm">
+    <button data-m="login" class="${mode==='login'?'on':''}">${L('Log in','ورود')}</button>
+    <button data-m="signup" class="${mode==='signup'?'on':''}">${L('Create account','ساخت حساب')}</button>
+  </div>
+  ${mode === 'login' ? loginForm() : signupForm()}
+  <div class="or">${L('or continue with','یا ادامه با')}</div>
+  <div class="two">
+    <button class="up gh sm" data-oauth="google">${GICON} Google</button>
+    <button class="up gh sm" data-oauth="github">${HICON} GitHub</button>
+  </div>`;
+}
+
+function loginForm(){
+  return `<div class="fm" id="f-login">
+    <label class="lb">${L('Email','ایمیل')}
+      <input id="li-e" dir="ltr" class="fld in sm" type="email" autocomplete="email" placeholder="you@example.com" maxlength="190">
+    </label>
+    <label class="lb">${L('Password','رمز عبور')}
+      <span class="pw">
+        <input id="li-p" dir="ltr" class="fld in sm" type="password" autocomplete="current-password" maxlength="128">
+        <button type="button" class="up sm" id="li-eye">${L('Show','نمایش')}</button>
+      </span>
+    </label>
+    <input type="text" name="website" id="hp" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="err" id="li-err" hidden></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <label class="ck"><input type="checkbox" id="li-remember" checked>${L('Keep me signed in','مرا وارد نگه دار')}</label>
+      <button type="button" class="lk" id="go-forgot">${L('Forgot password?','رمز را فراموش کرده‌اید؟')}</button>
+    </div>
+    <button class="btn clay" id="do-login">${L('Log in','ورود')}</button>
+  </div>`;
+}
+
+function signupForm(){
+  return `<div class="fm" id="f-signup">
+    <label class="lb">${L('Username','نام‌کاربری')}
+      <input id="su-u" dir="ltr" class="fld in sm" placeholder="watcher42" maxlength="32" autocomplete="username">
+    </label>
+    <label class="lb">${L('Email','ایمیل')}
+      <input id="su-e" dir="ltr" class="fld in sm" type="email" placeholder="you@example.com" maxlength="190" autocomplete="email">
+    </label>
+    <label class="lb">${L('Password','رمز عبور')}
+      <span class="pw">
+        <input id="su-p" dir="ltr" class="fld in sm" type="password" placeholder="${L('At least 8 characters','حداقل ۸ کاراکتر')}" maxlength="128" autocomplete="new-password">
+        <button type="button" class="up sm" id="su-eye">${L('Show','نمایش')}</button>
+      </span>
+    </label>
+    <div class="st" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <label class="lb">${L('Confirm password','تکرار رمز عبور')}
+      <input id="su-c" dir="ltr" class="fld in sm" type="password" placeholder="${L('Repeat password','رمز را تکرار کنید')}" maxlength="128" autocomplete="new-password">
+    </label>
+    <input type="text" name="website" id="hp2" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label class="ck"><input id="su-t" type="checkbox">${L('I agree to the terms and will use WatcherOsint lawfully','با شرایط موافقم و از WatcherOsint به‌صورت قانونی استفاده می‌کنم')}</label>
+    <div class="err" id="su-err" hidden></div>
+    <button class="btn clay" id="do-signup">${L('Create account','ساخت حساب')}</button>
+  </div>`;
+}
+
+function resetView(){
+  if(resetStep === 0){
+    return `
+    <button class="back up sm" id="rst-back">← ${L('Back to login','بازگشت به ورود')}</button>
+    <h2>${L('Reset your password','بازیابی رمز عبور')}</h2>
+    <p style="color:var(--mu);margin:0;font-size:13px">${L(
+      'Enter the email on your account — we will email a 6-digit code if it exists.',
+      'ایمیل حساب خود را وارد کنید — در صورت وجود، یک کد ۶ رقمی برایتان ایمیل می‌شود.'
+    )}</p>
+    <div class="fm">
+      <label class="lb">${L('Email','ایمیل')}
+        <input id="rs-e" dir="ltr" class="fld in sm" type="email" maxlength="190" placeholder="you@example.com">
+      </label>
+      <div class="err" id="rs-err" hidden></div>
+      <button class="btn clay" id="rs-check">${L('Send code','ارسال کد')}</button>
+    </div>`;
+  }
+  if(resetStep === 1){
+    return `
+    <button class="back up sm" id="rst-back0">← ${L('Back','بازگشت')}</button>
+    <div class="center">
+      <h2>${L('Enter the code','کد را وارد کنید')}</h2>
+      <p style="color:var(--mu);margin:0;font-size:13px">${L(
+        'We emailed a 6-digit code to','یک کد ۶ رقمی به این ایمیل فرستادیم:'
+      )} <b dir="ltr">${esc(resetEmail)}</b></p>
+      <div class="codewrap">
+        ${[0,1,2,3,4,5].map(i=>`<input class="in" maxlength="1" inputmode="numeric" data-ci="${i}" autocomplete="one-time-code" aria-label="digit ${i+1}">`).join('')}
+      </div>
+      <div class="err" id="code-err" hidden></div>
+      <button class="btn clay" id="rs-verify" style="width:100%">${L('Continue','ادامه')}</button>
+      <button class="lk" id="rs-resend">${L('Resend code','ارسال دوباره کد')}</button>
+    </div>`;
+  }
+  return `
+  <div class="center">
+    <h2>${L('Set a new password','رمز جدید را تنظیم کنید')}</h2>
+    <div class="fm" style="width:100%">
+      <label class="lb">${L('New password','رمز عبور جدید')}
+        <span class="pw">
+          <input id="np-1" dir="ltr" class="fld in sm" type="password" maxlength="128" autocomplete="new-password">
+          <button type="button" class="up sm" id="np-eye">${L('Show','نمایش')}</button>
+        </span>
+      </label>
+      <label class="lb">${L('Confirm password','تکرار رمز عبور')}
+        <input id="np-2" dir="ltr" class="fld in sm" type="password" maxlength="128" autocomplete="new-password">
+      </label>
+      <div class="err" id="np-err" hidden></div>
+      <button class="btn clay" id="np-save">${L('Reset & sign in','بازنشانی و ورود')}</button>
+    </div>
+  </div>`;
+}
+
+function loggedInView(u){
+  const initials = esc(((u.username || u.email || '?').slice(0,2)).toUpperCase());
+  return `<div class="center">
+    <div class="bl clay" style="width:64px;height:64px;border-radius:20px;font:800 20px var(--fh)">${initials}</div>
+    <h2>${L('Welcome back','خوش آمدید')}</h2>
+    <p style="color:var(--mu);margin:0">${esc(u.username || '')} — <span dir="ltr">${esc(u.email || '')}</span></p>
+    <a class="btn clay" href="phone.html" style="max-width:240px;text-decoration:none">${L('Enter workspace','ورود به فضای کاری')}</a>
+    <button class="up gh sm" id="do-logout">${L('Log out','خروج')}</button>
+  </div>`;
+}
+
+/* ---------------- error helpers ---------------- */
+function setErr(id, msg){
+  const e = $('#' + id);
+  if(!e) return;
+  if(!msg){ e.hidden = true; e.textContent = ''; return; }
+  e.hidden = false; e.textContent = msg;
+}
+
+function eyeToggle(btnId, inputId){
+  const i = $('#' + inputId), b = $('#' + btnId);
+  const show = i.type === 'password';
+  i.type = show ? 'text' : 'password';
+  b.textContent = show ? L('Hide','پنهان') : L('Show','نمایش');
+}
+
+const OAUTH_ERRORS = {
+  google_not_configured: L('Google sign-in is not configured on the server yet.','ورود با گوگل هنوز روی سرور تنظیم نشده.'),
+  github_not_configured: L('GitHub sign-in is not configured on the server yet.','ورود با گیت‌هاب هنوز روی سرور تنظیم نشده.'),
+  state_mismatch:        L('Sign-in session expired — please try again.','نشست ورود منقضی شد — دوباره امتحان کنید.'),
+  google_denied:         L('Google sign-in was cancelled.','ورود با گوگل لغو شد.'),
+  github_denied:         L('GitHub sign-in was cancelled.','ورود با گیت‌هاب لغو شد.'),
+  google_token:          L('Google sign-in failed — please try again.','ورود با گوگل ناموفق بود — دوباره امتحان کنید.'),
+  github_token:          L('GitHub sign-in failed — please try again.','ورود با گیت‌هاب ناموفق بود — دوباره امتحان کنید.'),
+  no_email:              L('Your account has no verified email to sign in with.','حساب شما ایمیل تأیید‌شده برای ورود ندارد.'),
+  oauth_failed:          L('Sign-in could not be completed.','ورود تکمیل نشد.'),
+};
+
+/* ---------------- render ---------------- */
+function render(){
+  if(currentUser){
+    $('#panel').innerHTML = connBanner() + loggedInView(currentUser);
+    bind();
+    return;
+  }
+  $('#panel').innerHTML = connBanner() + (mode === 'reset' ? resetView() : authView());
+  bind();
+}
+
+/* ---------------- bind ---------------- */
+function bind(){
+  // tab switch
+  $$('[data-m]').forEach(b => b.onclick = () => { mode = b.dataset.m; render(); });
+
+  // OAuth
+  $$('[data-oauth]').forEach(b => b.onclick = () => {
+    window.location.href = `${apiBase()}/api/auth/${b.dataset.oauth}/login`;
+  });
+
+  // ---- login ----
+  if($('#li-eye')){
+    $('#li-eye').onclick = () => eyeToggle('li-eye','li-p');
+    $('#go-forgot').onclick = () => { resetStep = 0; mode = 'reset'; render(); };
+    $('#do-login').onclick = async () => {
+      if(busy) return;
+      setErr('li-err','');
+      if($('#hp').value){ return; } // honeypot
+      const em = sanitizeField($('#li-e').value, 190).toLowerCase();
+      const pw = $('#li-p').value;
+      const remember = $('#li-remember').checked;
+      if(!EMAIL_RE.test(em)) return setErr('li-err', L('Enter a valid email','ایمیل معتبر وارد کنید'));
+      if(!pw) return setErr('li-err', L('Enter your password','رمز عبور را وارد کنید'));
+
+      busy = true; $('#do-login').disabled = true;
+      try{
+        await getCsrf(true);
+        const { ok, status, data } = await api('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email: em, password: pw, remember })
+        });
+        if(status === 429) return setErr('li-err', data.message || L('Too many attempts. Try again later.','تلاش‌های زیاد. بعداً امتحان کنید.'));
+        if(!ok || !data.success) return setErr('li-err', data.message || L('Invalid email or password.','ایمیل یا رمز نادرست است.'));
+        currentUser = data.user;
+        toast(L('Welcome back','خوش آمدید'));
+        render();
+      }catch(e){
+        setErr('li-err', L(`Backend not reachable at ${esc(apiBase())}.`,`اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد.`));
+      }finally{
+        busy = false;
+        if($('#do-login')) $('#do-login').disabled = false;
+      }
+    };
+  }
+
+  // ---- signup ----
+  if($('#su-eye')){
+    $('#su-eye').onclick = () => eyeToggle('su-eye','su-p');
+    $('#su-p').addEventListener('input', e => {
+      const v = e.target.value;
+      const score = (v.length >= 8) + (/[a-z]/.test(v) && /[A-Z]/.test(v)) + /\d/.test(v) + /[^\w\s]/.test(v);
+      const colors = ['#d2503c','#d98a2b','#b8a82b','#2fae7a'];
+      $$('.st i').forEach((it,k) => it.style.background = k < score ? colors[score-1] : '');
+    });
+    $('#do-signup').onclick = async () => {
+      if(busy) return;
+      setErr('su-err','');
+      if($('#hp2').value){ return; } // honeypot
+      const uname = sanitizeField($('#su-u').value, 32).replace(/[^a-zA-Z0-9_.\-]/g,'');
+      const em    = sanitizeField($('#su-e').value, 190).toLowerCase();
+      const pw    = $('#su-p').value;
+      const cf    = $('#su-c').value;
+
+      if(uname.length < 3) return setErr('su-err', L('Username must be at least 3 characters','نام‌کاربری باید حداقل ۳ کاراکتر باشد'));
+      if(!EMAIL_RE.test(em)) return setErr('su-err', L('Enter a valid email','ایمیل معتبر وارد کنید'));
+      if(pw.length < 8) return setErr('su-err', L('Password needs at least 8 characters','رمز عبور باید حداقل ۸ کاراکتر باشد'));
+      if(pw !== cf) return setErr('su-err', L('Passwords do not match','رمزها یکسان نیستند'));
+      if(!$('#su-t').checked) return setErr('su-err', L('Please accept the terms','لطفاً شرایط را بپذیرید'));
+
+      busy = true; $('#do-signup').disabled = true;
+      try{
+        await getCsrf(true);
+        const { ok, status, data } = await api('/api/auth/signup', {
+          method: 'POST',
+          body: JSON.stringify({ email: em, username: uname, password: pw })
+        });
+        if(status === 429) return setErr('su-err', data.message || L('Too many attempts.','تلاش‌های زیاد.'));
+        if(status === 409) return setErr('su-err', data.message || L('An account with this email already exists.','حسابی با این ایمیل وجود دارد.'));
+        if(!ok || !data.success) return setErr('su-err', data.message || L('Could not create account','ساخت حساب ممکن نشد'));
+        currentUser = data.user;
+        toast(L('Account created','حساب ساخته شد'));
+        render();
+      }catch(e){
+        setErr('su-err', L(`Backend not reachable at ${esc(apiBase())}.`,`اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد.`));
+      }finally{
+        busy = false;
+        if($('#do-signup')) $('#do-signup').disabled = false;
+      }
+    };
+  }
+
+  // ---- reset ----
+  if(mode === 'reset'){
+    if($('#rst-back'))  $('#rst-back').onclick  = () => { mode = 'login'; render(); };
+    if($('#rst-back0')) $('#rst-back0').onclick = () => { resetStep = 0; render(); };
+
+    if($('#rs-check')) $('#rs-check').onclick = async () => {
+      const em = sanitizeField($('#rs-e').value, 190).toLowerCase();
+      setErr('rs-err','');
+      if(!EMAIL_RE.test(em)) return setErr('rs-err', L('Enter a valid email','ایمیل معتبر وارد کنید'));
+      $('#rs-check').disabled = true;
+      try{
+        await getCsrf(true);
+        const { ok, status, data } = await api('/api/auth/forgot', {
+          method: 'POST',
+          body: JSON.stringify({ email: em })
+        });
+        if(status === 429) return setErr('rs-err', data.message || L('Too many attempts.','تلاش‌های زیاد.'));
+        if(!ok || !data.success) return setErr('rs-err', data.message || L('Could not send the code','ارسال کد ممکن نشد'));
+        resetEmail = em; resetStep = 1; render();
+        toast(L('If the email exists, a code was sent.','در صورت وجود، کد ارسال شد.'));
+      }catch(e){
+        setErr('rs-err', L(`Backend not reachable at ${esc(apiBase())}.`,`اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد.`));
+      }finally{
+        if($('#rs-check')) $('#rs-check').disabled = false;
+      }
+    };
+
+    if($('#rs-resend')) $('#rs-resend').onclick = async () => {
+      try{
+        await getCsrf();
+        await api('/api/auth/forgot', {
+          method: 'POST',
+          body: JSON.stringify({ email: resetEmail })
+        });
+        toast(L('Code resent','کد دوباره ارسال شد'));
+      }catch(e){
+        toast(L('Could not resend','ارسال دوباره ممکن نشد'));
+      }
+    };
+
+    if($('[data-ci]')){
+      const boxes = $$('[data-ci]');
+      boxes.forEach((b,i) => {
+        b.addEventListener('input', () => {
+          b.value = b.value.replace(/[^0-9]/g,'').slice(0,1);
+          b.classList.remove('bad');
+          if(b.value && boxes[i+1]) boxes[i+1].focus();
+        });
+        b.addEventListener('keydown', e => {
+          if(e.key === 'Backspace' && !b.value && boxes[i-1]) boxes[i-1].focus();
+          if(e.key === 'ArrowLeft' && boxes[i-1]) boxes[i-1].focus();
+          if(e.key === 'ArrowRight' && boxes[i+1]) boxes[i+1].focus();
+        });
+        b.addEventListener('paste', e => {
+          const txt = (e.clipboardData.getData('text')||'').replace(/[^0-9]/g,'').slice(0,6);
+          if(txt.length){
+            e.preventDefault();
+            boxes.forEach((bb,k) => bb.value = txt[k] || '');
+            const last = Math.min(txt.length, 6) - 1;
+            if(boxes[last]) boxes[last].focus();
+          }
+        });
+      });
+      $('#rs-verify').onclick = () => {
+        const entered = boxes.map(b => b.value).join('');
+        setErr('code-err','');
+        if(entered.length < 6){
+          boxes.forEach(b => b.classList.add('bad'));
+          return setErr('code-err', L('Enter all 6 digits','هر ۶ رقم را وارد کنید'));
+        }
+        resetCode = entered; resetStep = 2; render();
+      };
+    }
+
+    if($('#np-eye')) $('#np-eye').onclick = () => eyeToggle('np-eye','np-1');
+    if($('#np-save')) $('#np-save').onclick = async () => {
+      const p1 = $('#np-1').value, p2 = $('#np-2').value;
+      setErr('np-err','');
+      if(p1.length < 8) return setErr('np-err', L('Password needs at least 8 characters','رمز عبور باید حداقل ۸ کاراکتر باشد'));
+      if(p1 !== p2) return setErr('np-err', L('Passwords do not match','رمزها یکسان نیستند'));
+      $('#np-save').disabled = true;
+      try{
+        await getCsrf(true);
+        const { ok, data } = await api('/api/auth/reset', {
+          method: 'POST',
+          body: JSON.stringify({ email: resetEmail, code: resetCode, password: p1 })
+        });
+        if(!ok || !data.success){
+          if(data.code_invalid){ resetStep = 1; render(); setTimeout(()=>setErr('code-err', data.message), 0); return; }
+          setErr('np-err', data.message || L('Could not reset password','بازنشانی ممکن نشد'));
+          return;
+        }
+        // بعد از ریست موفق، خودمان ورود می‌کنیم چون سرور session را ست نکرده
+        await getCsrf(true);
+        const loginRes = await api('/api/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email: resetEmail, password: p1 })
+        });
+        if(loginRes.ok && loginRes.data.success){
+          currentUser = loginRes.data.user;
+          toast(L('Password updated — welcome back','رمز به‌روزرسانی شد — خوش آمدید'));
+        } else {
+          toast(L('Password updated. Please log in.','رمز به‌روزرسانی شد. لطفاً وارد شوید.'));
+        }
+        mode = 'login'; resetStep = 0; render();
+      }catch(e){
+        setErr('np-err', L(`Backend not reachable at ${esc(apiBase())}.`,`اتصال به بک‌اند در ${esc(apiBase())} برقرار نشد.`));
+      }finally{
+        if($('#np-save')) $('#np-save').disabled = false;
+      }
+    };
+  }
+
+  // ---- logout ----
+  if($('#do-logout')) $('#do-logout').onclick = async () => {
+    try{
+      await getCsrf();
+      await api('/api/auth/logout', { method:'POST' });
+    }catch(e){ /* ignore */ }
+    _csrfCache = null;
+    currentUser = null;
+    toast(L('Logged out','خارج شدید'));
+    render();
+  };
+}
+
+/* ---------------- keyboard ---------------- */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Enter' && document.activeElement && document.activeElement.tagName === 'INPUT'){
+    if(mode === 'login'  && $('#do-login'))  $('#do-login').click();
+    if(mode === 'signup' && $('#do-signup')) $('#do-signup').click();
+  }
+});
+
+/* ---------------- init ---------------- */
+async function init(){
+  await checkAuth();
+  render();
+
+  // OAuth callback errors on URL (?error=...)
+  const params = new URLSearchParams(location.search);
+  const err = params.get('error');
+  if(err){
+    toast(OAUTH_ERRORS[err] || L('Sign-in failed.','ورود ناموفق بود.'));
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
+  // OAuth success
+  if(params.get('oauth') === 'success' || currentUser){
+    // already handled by checkAuth → render will show logged-in view
+  }
+}
+init();
+
+/* ---------------- splash ---------------- */
+let pr = 0;
+const iv = setInterval(() => {
+  pr = Math.min(100, pr + Math.random()*16 + 10);
+  $('#sp-b').style.width = pr + '%';
+  if(pr >= 100){ clearInterval(iv); setTimeout(()=>$('#splash').classList.add('off'), 200); }
+}, 80);
+</script>
+</body>
+</html>
