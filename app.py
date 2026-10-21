@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-WatcherOsint — API entrypoint (v1.1, hardened)
+WatcherOsint — API entrypoint (v1.2)
 """
 import os
 import secrets
@@ -9,10 +9,10 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-from Number import bp as phone_bp
-from Email import bp as email_bp
-from Username import bp as username_bp
-from auth import bp as auth_bp          # ← lowercase (Linux case-sensitive)
+from number import bp as phone_bp
+from email import bp as email_bp
+from username import bp as username_bp
+from auth import bp as auth_bp
 
 VERSION = "1.1.0"
 IS_DEV = os.environ.get("ENV", "production") == "development"
@@ -47,15 +47,14 @@ app.config.update(
     SECRET_KEY=secret,
     SESSION_COOKIE_NAME="wo_sid",
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SECURE=not IS_DEV,          # True in prod (needs HTTPS)
-    SESSION_COOKIE_SAMESITE="Lax" if IS_DEV else "None",  # None for cross-site cookie
+    SESSION_COOKIE_SECURE=not IS_DEV,
+    SESSION_COOKIE_SAMESITE="Lax" if IS_DEV else "None",
     PERMANENT_SESSION_LIFETIME=60 * 60 * 24 * 14,
-    MAX_CONTENT_LENGTH=2 * 1024 * 1024,        # 2 MB
+    MAX_CONTENT_LENGTH=2 * 1024 * 1024,
     JSON_SORT_KEYS=False,
 )
 
 # --- CORS ---
-# /api/* covers auth (mounted at /api/auth) and all other blueprints
 CORS(
     app,
     resources={r"/api/*": {"origins": ALLOWED_ORIGINS}},
@@ -80,8 +79,6 @@ def set_security_headers(resp):
     resp.headers["Cache-Control"] = "no-store"
     if not IS_DEV:
         resp.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
-    # NOTE: no CSP here — HTML is served by GitHub Pages, not by this API.
-    # Set CSP in the <meta> tag or via GitHub Pages hosting if needed.
     return resp
 
 # --- Health ---
@@ -92,8 +89,6 @@ def health():
 # --- Errors ---
 @app.errorhandler(404)
 def not_found(e):
-    if request.path.startswith("/api/"):
-        return jsonify({"success": False, "error": "not_found"}), 404
     return jsonify({"success": False, "error": "not_found"}), 404
 
 @app.errorhandler(413)
