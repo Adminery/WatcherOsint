@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+""" 
 WatcherOsint - Auth blueprint (v1.1 - hardened)
 Handles: signup, login, logout, session/me, CSRF, forgot/reset password,
 Google OAuth, GitHub OAuth.
